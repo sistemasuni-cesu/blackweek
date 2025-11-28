@@ -295,18 +295,26 @@
             box-shadow: 0 0 0 2px rgba(0, 196, 255, 0.2);
         }
 
-        .submit-btn {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            width: 100%;
-            transition: var(--transition);
-        }
+/* 🚀 CSS CORRIGIDO E MELHORADO para centralizar o texto */
+.submit-btn {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    transition: var(--transition);
+    
+    /* Propriedades Adicionadas/Alteradas para Centralização: */
+    display: flex; /* Transforma o elemento em um container flexível */
+    justify-content: center; /* Centraliza o conteúdo (texto) horizontalmente */
+    align-items: center; /* Centraliza o conteúdo (texto) verticalmente (útil se o padding fosse variável) */
+    text-align: center; /* Garante a centralização do texto interno */
+    text-decoration: none; /* Remove o sublinhado, já que é uma tag <a> */
+}
 
         .submit-btn:hover {
             background-color: var(--secondary-blue);
@@ -412,7 +420,7 @@
         </div>
     </section>
 
-    <div class="modal" id="course-modal">
+<div class="modal" id="course-modal">
         <div class="modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
             <h2 class="modal-title" id="modal-course-title">Curso</h2>
@@ -447,6 +455,13 @@
                     <span class="price-label">Black Week:</span>
                     <span class="price-value" id="blackweek-price">R$ 0,00</span>
                 </div>
+                <div class="course-actions">
+                    <a href="https://api.whatsapp.com/send?phone=554291350233&text=Vi%20os%20valores%20da%20black%20week%20e%20quero%20fazer%20minha%20inscri%C3%A7%C3%A3o." 
+                    target="_blank" 
+                    class="submit-btn">
+                        SEGUIR PARA INSCRIÇÃO!
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -457,514 +472,581 @@
         </div>
     </footer>
 
-    <script>
+<script>
+    
+    // ** INÍCIO DA MUDANÇA: Dados do Curso Ajustados **
+    // As chaves 'image' agora contêm os caminhos relativos (URLs)
+    const courses = [
+        {
+            id: 1,
+            title: "Análise e Desenvolvimento de Sistemas",
+            description: "Graduação presencial com foco em desenvolvimento de software e análise de sistemas.",
+            image: "ads.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 736,54",
+                blackweek: "R$ 408,92"
+            }
+        },
+        {
+            id: 2,
+            title: "Engenharia de Software - Matutino",
+            description: "Formação completa em engenharia de software com metodologias ágeis.",
+            image: "soft.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.289,01",
+                blackweek: "R$ 482,12"
+            }
+        },
+        {
+            id: 2,
+            title: "Engenharia de Software - Noturno",
+            description: "Formação completa em engenharia de software com metodologias ágeis.",
+            image: "soft.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.289,01",
+                blackweek: "R$ 715,65"
+            }
+        },
+        {
+            id: 3,
+            title: "Agronomia",
+            description: "Curso tradicional com base sólida em algoritmos e estrutura de dados.",
+            image: "agronomia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 649,00",
+                blackweek: "R$ 449,00"
+            }
+        },
+        {
+            id: 4,
+            title: "Arquitetura e Urbanismos",
+            description: "A atuação de um arquiteto e urbanista vai muito além de projetar e decorar casas. Quem tem mais afinidade com cálculos e obras vai se dar bem tanto quanto quem prefere o lado mais estético e criativo.",
+            image: "arquitetura.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.401,59",
+                blackweek: "R$ 805,46"
+            }
+        },
+        {
+            id: 5,
+            title: "Biomedicina - Matutino",
+            description: "O curso presencial de Biomedicina é a sua oportunidade de desvendar os mistérios do corpo humano e participar da evolução na área da Saúde.",
+            image: "biomedicina.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.396,90",
+                blackweek: "R$ 754,33"
+            }
+        },
+                                
+        {
+            id: 5,
+            title: "Biomedicina - Noturno",
+            description: "O curso presencial de Biomedicina é a sua oportunidade de desvendar os mistérios do corpo humano e participar da evolução na área da Saúde.",
+            image: "biomedicina.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.417,93",
+                blackweek: "R$ 765,68"
+            }
+        },
+        {
+            id: 6,
+            title: "Ciência Biológicas - Licenciatura",
+            description: "O curso de Ciências Biológicas capacita para entender todas as formas de vida, sejam elas macro ou microscópicas, como formam ecossistemas e como seres humanos, se encaixam nesse sistema tão complexo.",
+            image: "ciências biológicas.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 658,55",
+                blackweek: "R$ 355,62"
+            }
+        },
         
-        // ** INÍCIO DA MUDANÇA: Dados do Curso Ajustados **
-        // As chaves 'image' agora contêm os caminhos relativos (URLs)
-        const courses = [
-            {
-                id: 1,
-                title: "Análise e Desenvolvimento de Sistemas",
-                description: "Graduação presencial com foco em desenvolvimento de software e análise de sistemas.",
-                image: "ads.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 736,54",
-                    blackweek: "R$ 408,92"
-                }
-            },
-            {
-                id: 2,
-                title: "Engenharia de Software - Matutino",
-                description: "Formação completa em engenharia de software com metodologias ágeis.",
-                image: "soft.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.289,01",
-                    blackweek: "R$ 482,12"
-                }
-            },
-            {
-                id: 2,
-                title: "Engenharia de Software - Noturno",
-                description: "Formação completa em engenharia de software com metodologias ágeis.",
-                image: "soft.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.289,01",
-                    blackweek: "R$ 715,65"
-                }
-            },
-            {
-                id: 3,
-                title: "Agronomia",
-                description: "Curso tradicional com base sólida em algoritmos e estrutura de dados.",
-                image: "agronomia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 649,00",
-                    blackweek: "R$ 449,00"
-                }
-            },
-            {
-                id: 4,
-                title: "Arquitetura e Urbanismos",
-                description: "A atuação de um arquiteto e urbanista vai muito além de projetar e decorar casas. Quem tem mais afinidade com cálculos e obras vai se dar bem tanto quanto quem prefere o lado mais estético e criativo.",
-                image: "arquitetura.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.401,59",
-                    blackweek: "R$ 805,46"
-                }
-            },
-            {
-                id: 5,
-                title: "Biomedicina - Matutino",
-                description: "O curso presencial de Biomedicina é a sua oportunidade de desvendar os mistérios do corpo humano e participar da evolução na área da Saúde.",
-                image: "biomedicina.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.396,90",
-                    blackweek: "R$ 754,33"
-                }
-            },
-                        {
-                id: 5,
-                title: "Biomedicina - Noturno",
-                description: "O curso presencial de Biomedicina é a sua oportunidade de desvendar os mistérios do corpo humano e participar da evolução na área da Saúde.",
-                image: "biomedicina.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.417,93",
-                    blackweek: "R$ 765,68"
-                }
-            },
-            {
-                id: 6,
-                title: "Ciência Biológicas - Licenciatura",
-                description: "O curso de Ciências Biológicas capacita para entender todas as formas de vida, sejam elas macro ou microscópicas, como formam ecossistemas e como seres humanos, se encaixam nesse sistema tão complexo.",
-                image: "ciências biológicas.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 658,55",
-                    blackweek: "R$ 355,62"
-                }
-            },
-            
-            {
-                id: 7,
-                title: "Ciências Biológicas - Bacharelado (Matutino)",
-                description: "O curso de Ciências Biológicas capacita para entender todas as formas de vida, sejam elas macro ou microscópicas, como formam ecossistemas e como seres humanos, se encaixam nesse sistema tão complexo.",
-                image: "ciências biológicas.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 681,84",
-                    blackweek: "R$ 368,20"
-                }
-            },
-            {
-                id: 8,
-                title: "Ciências Biológicas - Bacharelado (Noturno)",
-                description: "O curso de Ciências Biológicas capacita para entender todas as formas de vida, sejam elas macro ou microscópicas, como formam ecossistemas e como seres humanos, se encaixam nesse sistema tão complexo.",
-                image: "ciências biológicas.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 717,73",
-                    blackweek: "R$ 387,57"
-                }
-            },
-                       
-            {
-                id: 9,
-                title: "Ciências Contábeis",
-                description: "A graduação em Ciências Contábeis é indispensável no mercado de trabalho, seja para atuar como colaborador de uma grande empresa ou em um cargo público e até mesmo em seu próprio escritório.",
-                image: "ciências contábeis.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 718,13",
-                    blackweek: "R$ 387,79"
-                }
-            },
-                        {
-                id: 10,
-                title: "Direito - Matutino",
-                description: "O Direito é um curso de graduação que permite uma profissão diversificada, com atuação em várias áreas do ramo público e privado.",
-                image: "direito.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.583,67",
-                    blackweek: "R$ 855,18"
-                }
-            },
-                                    {
-                id: 11,
-                title: "Direito - Noturno",
-                description: "O Direito é um curso de graduação que permite uma profissão diversificada, com atuação em várias áreas do ramo público e privado.",
-                image: "direito.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.381,09",
-                    blackweek: "R$ 745,79"
-                }
-            },
-                    {
-                id: 12,
-                title: "Enfermagem - Matutino",
-                description: "A Enfermagem é uma profissão diversificada, com importante papel na manutenção da saúde da comunidade e na eficácia dos sistemas de saúde no mundo todo. A Organização Mundial de Saúde (OMS), reconhece o papel essencial da enfermagem na promoção da saúde, prevenção de doenças e recuperação.",
-                image: "enfermagem.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.574,46",
-                    blackweek: "R$ 850,21"
-                }
-            },
-            {
-                id: 13,
-                title: "Enfermagem - Noturno",
-                description: "A Enfermagem é uma profissão diversificada, com importante papel na manutenção da saúde da comunidade e na eficácia dos sistemas de saúde no mundo todo. A Organização Mundial de Saúde (OMS), reconhece o papel essencial da enfermagem na promoção da saúde, prevenção de doenças e recuperação.",
-                image: "enfermagem.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.657,33",
-                    blackweek: "R$ 894,96"
-                }
-            }, 
-            {
-                id: 14,
-                title: "Engenharia Civil",
-                description: "O engenheiro civil é o profissional da engenharia que projeta, planeja, gerencia e supervisiona a construção de edifícios, infraestruturas e sistemas.",
-                image: "civil.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$1.454,76",
-                    blackweek: "R$ 646,14"
-                }
-            },  
-            {
-                id: 15,
-                title: "Engenharia de Produção",
-                description: "O curso de Engenharia de Produção da UniCesumar prepara você para analisar, desenvolver, implantar, operacionalizar e gerenciar projetos.",
-                image: "produção.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$1.196,94",
-                    blackweek: "R$ 531,63"
-                }
-            },    
-            {
-                id: 16,
-                title: "Engenharia Mecânica",
-                description: "Quem escolhe a carreira da engenharia mecânica pode ter certeza que tem um mercado em expansão pela frente, com muitas vertentes de atuação.",
-                image: "mecanica.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$1.583,67",
-                    blackweek: "R$ 791,32"
-                }
-            }, 
-           {
-                id: 17,
-                title: "Estética e Cosmética",
-                description: "A Estética e Cosmética é uma profissão promissora e diversificada, no qual o profissional estará apto para atuar e empreender em diversas áreas ligadas a promoção e manutenção da beleza fundamentadas no princípio da saúde.",
-                image: "estética e cosmética.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 994,36",
-                    blackweek: "R$ 552,07"
-                }
-            }, 
-            {
-                id: 18,
-                title: "Farmácia - Matutino",
-                description: "O farmacêutico é um profissional da saúde com expertise em medicamentos e sua aplicação prática. Além de trabalhar em farmácias e drogarias, os farmacêuticos desempenham um papel vital na indústria farmacêutica, onde estão envolvidos em pesquisa, desenvolvimento e controle de qualidade de medicamentos.",
-                image: "farmacia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.473,17",
-                    blackweek: "R$ 551,00"
-                }
-            },
-             {
-                id: 19,
-                title: "Farmácia - Noturno",
-                description: "O farmacêutico é um profissional da saúde com expertise em medicamentos e sua aplicação prática. Além de trabalhar em farmácias e drogarias, os farmacêuticos desempenham um papel vital na indústria farmacêutica, onde estão envolvidos em pesquisa, desenvolvimento e controle de qualidade de medicamentos.",
-                image: "farmacia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.344,26",
-                    blackweek: "R$ 746,33"
-                }
-            } ,
-             {
-                id: 20,
-                title: "Fisioterapia - Matutino",
-                description: "A Fisioterapia é uma profissão diversificada, na qual o profissional poderá atuar em diversas áreas para promoção, prevenção, diagnóstico e tratamento de disfunções do movimento humano, promovendo a reabilitação física e melhoria da qualidade de vida do indivíduo.",
-                image: "fisioterapia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.486,99",
-                    blackweek: "R$ 556,17"
-                }
-            },
-             {
-                id: 21,
-                title: "Fisioterapia - Noturno",
-                description: "A Fisioterapia é uma profissão diversificada, na qual o profissional poderá atuar em diversas áreas para promoção, prevenção, diagnóstico e tratamento de disfunções do movimento humano, promovendo a reabilitação física e melhoria da qualidade de vida do indivíduo.",
-                image: "fisioterapia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.565,25",
-                    blackweek: "R$ 869,02"
-                }
-            },  
-             {
-                id: 22,
-                title: "Medicina Veterinária",
-                description: "Se você deseja transformar sua paixão pelos animais em profissão, a graduação presencial em Medicina Veterinária da UniCesumar é a escolha certa.",
-                image: "veterinária.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 3.480,50",
-                    blackweek: "R$ 1.627,25"
-                }
-            },
-             {
-                id: 23,
-                title: "Nutrição - Matutino",
-                description: "A Nutrição é uma profissão promissora e diversificada, na qual o profissional exerce importante papel na promoção da saúde, de hábitos alimentares saudáveis, prevenção de doenças e melhoria da qualidade de vida por meio da orientação alimentar e nutricional.",
-                image: "nutrição.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.312,04",
-                    blackweek: "R$ 490,74"
-                }
-            },
-             {
-                id: 24,
-                title: "Nutrição - Noturno",
-                description: "A Nutrição é uma profissão promissora e diversificada, na qual o profissional exerce importante papel na promoção da saúde, de hábitos alimentares saudáveis, prevenção de doenças e melhoria da qualidade de vida por meio da orientação alimentar e nutricional.",
-                image: "nutrição.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.381,09",
-                    blackweek: "R$ 766,78"
-                }
-            },
-             {
-                id: 25,
-                title: "Odontologia",
-                description: "Se você sempre sonhou em transformar sorrisos, seu lugar é na UniCesumar! Aqui, você viverá uma experiência completa e enriquecedora, com uma formação humanizada e prática.",
-                image: "odontologia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 3.913,27",
-                    blackweek: "R$ 1.463,66"
-                }
-            },
-             {
-                id: 26,
-                title: "Pedagogia",
-                description: "O curso de graduação em Pedagogia é entender que a educação pode mudar uma vida, uma história, um país. Com o nosso curso, você se prepara para ser agente de transformação – dentro e fora da sala de aula, adquirindo conhecimentos e habilidades para despertar o desejo de aprender e inspirar futuros médicos, engenheiros, e principalmente, cidadãos.",
-                image: "pedagogia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 658,55",
-                    blackweek: "R$ 365,63"
-                }
-            },
-                {
-                id: 27,
-                title: "Processos Gerenciais",
-                description: "O Curso Superior de Tecnologia em Processos Gerenciais é indispensável no mercado de trabalho, pois uma empresa bem sucedida precisa de uma administração competente por trás dela, e o profissional pode atuar em qualquer segmento do setor administrativo.",
-                image: "processos gerenciais.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 699,71",
-                    blackweek: "R$ 388,47"
-                }
-            },
-                {
-                id: 28,
-                title: "Psicologia - Matutino",
-                description: "Descubra o curso de Psicologia na UniCesumar, uma jornada fascinante dedicada ao estudo aprofundado do comportamento humano e dos processos mentais. Nosso curso de graduação, que dura cinco anos, é projetado para fornecer uma compreensão completa de como as pessoas pensam, sentem, agem e interagem no mundo moderno.",
-                image: "psicologia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 2.011,83",
-                    blackweek: "R$ 752,48"
-                }
-            },
-                {
-                id: 29,
-                title: "Psicologia - Noturno",
-                description: "Descubra o curso de Psicologia na UniCesumar, uma jornada fascinante dedicada ao estudo aprofundado do comportamento humano e dos processos mentais. Nosso curso de graduação, que dura cinco anos, é projetado para fornecer uma compreensão completa de como as pessoas pensam, sentem, agem e interagem no mundo moderno.",
-                image: "psicologia.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.749,41",
-                    blackweek: "R$ 1.068,39"
-                }
-            },
-                {
-                id: 30,
-                title: "Publicidade e Propaganda",
-                description: "Publicidade e propaganda é uma área que envolve a criação, planejamento e execução de campanhas e estratégias para promover produtos e serviços. É a arte de conectar empresas e consumidores de forma criativa e persuasiva.",
-                image: "publicidade e propaganda.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 1.068,02",
-                    blackweek: "R$ 592,96"
-                }
-            },
-                {
-                id: 31,
-                title: "Administração",
-                description: "A graduação em Administração nunca esteve tão em alta. Desde as pequenas startups hightechs, disruptivas e inovadoras, até as gigantes multinacionais que dominam o mercado há anos, todas as empresas procuram por profissionais de Administração com personalidade e visão de futuro, que saibam se organizar e planejar seu crescimento.",
-                image: "administração.jpeg", // Caminho real da imagem
-                prices: {
-                    monthly: "R$ 791,79",
-                    blackweek: "R$ 439,60"
-                }
+        {
+            id: 7,
+            title: "Ciências Biológicas - Bacharelado (Matutino)",
+            description: "O curso de Ciências Biológicas capacita para entender todas as formas de vida, sejam elas macro ou microscópicas, como formam ecossistemas e como seres humanos, se encaixam nesse sistema tão complexo.",
+            image: "ciências biológicas.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 681,84",
+                blackweek: "R$ 368,20"
             }
-        ];
-        // ** FIM DA MUDANÇA: Dados do Curso Ajustados **
-
-        // DOM Elements
-        const coursesGrid = document.getElementById('courses-grid');
-        const courseModal = document.getElementById('course-modal');
-        const closeModal = document.getElementById('close-modal');
-        const modalCourseTitle = document.getElementById('modal-course-title');
-        const courseForm = document.getElementById('course-form');
-        const formSection = document.getElementById('form-section');
-        const pricesDisplay = document.getElementById('prices-display');
-        const monthlyPrice = document.getElementById('monthly-price');
-        //const enrollmentPrice = document.getElementById('enrollment-price');
-        const blackweekPrice = document.getElementById('blackweek-price');
-        const searchInput = document.getElementById('search-input');
-        const searchBtn = document.getElementById('search-btn');
-
-        // Current selected course
-        let currentCourse = null;
-
-        // Function to render courses
-        function renderCourses(coursesToRender) {
-            coursesGrid.innerHTML = '';
-            
-            coursesToRender.forEach(course => {
-                const courseCard = document.createElement('div');
-                courseCard.className = 'course-card';
-                
-                // ** INÍCIO DA MUDANÇA: Geração do HTML da Imagem **
-                // Agora criamos a tag <img> com a URL do objeto 'course'
-                courseCard.innerHTML = `
-                    <div class="course-image">
-                        <img src="${course.image}" alt="Imagem do curso ${course.title}">
-                        <div class="image-placeholder">${course.title}</div>
-                    </div>
-                    <div class="course-info">
-                        <h3 class="course-title">${course.title}</h3>
-                        <p class="course-description">${course.description}</p>
-                        <div class="course-actions">
-                            <button class="view-prices-btn" data-id="${course.id}">Ver Valores</button>
-                        </div>
-                    </div>
-                `;
-                // ** FIM DA MUDANÇA: Geração do HTML da Imagem **
-
-                coursesGrid.appendChild(courseCard);
-            });
-
-            // Add event listeners to the "Ver Valores" buttons
-            document.querySelectorAll('.view-prices-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const courseId = parseInt(e.target.getAttribute('data-id'));
-                    openCourseModal(courseId);
-                });
-            });
-        }
-
-        // Function to open course modal
-        function openCourseModal(courseId) {
-            currentCourse = courses.find(course => course.id === courseId);
-            
-            if (currentCourse) {
-                modalCourseTitle.textContent = currentCourse.title;
-                formSection.style.display = 'block';
-                pricesDisplay.style.display = 'none';
-                courseModal.style.display = 'flex';
+        },
+        {
+            id: 8,
+            title: "Ciências Biológicas - Bacharelado (Noturno)",
+            description: "O curso de Ciências Biológicas capacita para entender todas as formas de vida, sejam elas macro ou microscópicas, como formam ecossistemas e como seres humanos, se encaixam nesse sistema tão complexo.",
+            image: "ciências biológicas.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 717,73",
+                blackweek: "R$ 387,57"
+            }
+        },
+                                
+        {
+            id: 9,
+            title: "Ciências Contábeis",
+            description: "A graduação em Ciências Contábeis é indispensável no mercado de trabalho, seja para atuar como colaborador de uma grande empresa ou em um cargo público e até mesmo em seu próprio escritório.",
+            image: "ciências contábeis.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 718,13",
+                blackweek: "R$ 387,79"
+            }
+        },
+                                
+        {
+            id: 10,
+            title: "Direito - Matutino",
+            description: "O Direito é um curso de graduação que permite uma profissão diversificada, com atuação em várias áreas do ramo público e privado.",
+            image: "direito.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.583,67",
+                blackweek: "R$ 855,18"
+            }
+        },
+                                        
+        {
+            id: 11,
+            title: "Direito - Noturno",
+            description: "O Direito é um curso de graduação que permite uma profissão diversificada, com atuação em várias áreas do ramo público e privado.",
+            image: "direito.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.381,09",
+                blackweek: "R$ 745,79"
+            }
+        },
+                    
+        {
+            id: 12,
+            title: "Enfermagem - Matutino",
+            description: "A Enfermagem é uma profissão diversificada, com importante papel na manutenção da saúde da comunidade e na eficácia dos sistemas de saúde no mundo todo. A Organização Mundial de Saúde (OMS), reconhece o papel essencial da enfermagem na promoção da saúde, prevenção de doenças e recuperação.",
+            image: "enfermagem.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.574,46",
+                blackweek: "R$ 850,21"
+            }
+        },
+        {
+            id: 13,
+            title: "Enfermagem - Noturno",
+            description: "A Enfermagem é uma profissão diversificada, com importante papel na manutenção da saúde da comunidade e na eficácia dos sistemas de saúde no mundo todo. A Organização Mundial de Saúde (OMS), reconhece o papel essencial da enfermagem na promoção da saúde, prevenção de doenças e recuperação.",
+            image: "enfermagem.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.657,33",
+                blackweek: "R$ 894,96"
+            }
+        }, 
+        {
+            id: 14,
+            title: "Engenharia Civil",
+            description: "O engenheiro civil é o profissional da engenharia que projeta, planeja, gerencia e supervisiona a construção de edifícios, infraestruturas e sistemas.",
+            image: "civil.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$1.454,76",
+                blackweek: "R$ 646,14"
+            }
+        },  
+        {
+            id: 15,
+            title: "Engenharia de Produção",
+            description: "O curso de Engenharia de Produção da UniCesumar prepara você para analisar, desenvolver, implantar, operacionalizar e gerenciar projetos.",
+            image: "produção.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$1.196,94",
+                blackweek: "R$ 531,63"
+            }
+        },  
+        {
+            id: 16,
+            title: "Engenharia Mecânica",
+            description: "Quem escolhe a carreira da engenharia mecânica pode ter certeza que tem um mercado em expansão pela frente, com muitas vertentes de atuação.",
+            image: "mecanica.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$1.583,67",
+                blackweek: "R$ 791,32"
+            }
+        }, 
+        {
+            id: 17,
+            title: "Estética e Cosmética",
+            description: "A Estética e Cosmética é uma profissão promissora e diversificada, no qual o profissional estará apto para atuar e empreender em diversas áreas ligadas a promoção e manutenção da beleza fundamentadas no princípio da saúde.",
+            image: "estética e cosmética.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 994,36",
+                blackweek: "R$ 552,07"
+            }
+        }, 
+        {
+            id: 18,
+            title: "Farmácia - Matutino",
+            description: "O farmacêutico é um profissional da saúde com expertise em medicamentos e sua aplicação prática. Além de trabalhar em farmácias e drogarias, os farmacêuticos desempenham um papel vital na indústria farmacêutica, onde estão envolvidos em pesquisa, desenvolvimento e controle de qualidade de medicamentos.",
+            image: "farmacia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.473,17",
+                blackweek: "R$ 551,00"
+            }
+        },
+        {
+            id: 19,
+            title: "Farmácia - Noturno",
+            description: "O farmacêutico é um profissional da saúde com expertise em medicamentos e sua aplicação prática. Além de trabalhar em farmácias e drogarias, os farmacêuticos desempenham um papel vital na indústria farmacêutica, onde estão envolvidos em pesquisa, desenvolvimento e controle de qualidade de medicamentos.",
+            image: "farmacia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.344,26",
+                blackweek: "R$ 746,33"
+            }
+        } ,
+        {
+            id: 20,
+            title: "Fisioterapia - Matutino",
+            description: "A Fisioterapia é uma profissão diversificada, na qual o profissional poderá atuar em diversas áreas para promoção, prevenção, diagnóstico e tratamento de disfunções do movimento humano, promovendo a reabilitação física e melhoria da qualidade de vida do indivíduo.",
+            image: "fisioterapia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.486,99",
+                blackweek: "R$ 556,17"
+            }
+        },
+        {
+            id: 21,
+            title: "Fisioterapia - Noturno",
+            description: "A Fisioterapia é uma profissão diversificada, na qual o profissional poderá atuar em diversas áreas para promoção, prevenção, diagnóstico e tratamento de disfunções do movimento humano, promovendo a reabilitação física e melhoria da qualidade de vida do indivíduo.",
+            image: "fisioterapia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.565,25",
+                blackweek: "R$ 869,02"
+            }
+        },  
+        {
+            id: 22,
+            title: "Medicina Veterinária",
+            description: "Se você deseja transformar sua paixão pelos animais em profissão, a graduação presencial em Medicina Veterinária da UniCesumar é a escolha certa.",
+            image: "veterinária.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 3.480,50",
+                blackweek: "R$ 1.627,25"
+            }
+        },
+        {
+            id: 23,
+            title: "Nutrição - Matutino",
+            description: "A Nutrição é uma profissão promissora e diversificada, na qual o profissional exerce importante papel na promoção da saúde, de hábitos alimentares saudáveis, prevenção de doenças e melhoria da qualidade de vida por meio da orientação alimentar e nutricional.",
+            image: "nutrição.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.312,04",
+                blackweek: "R$ 490,74"
+            }
+        },
+        {
+            id: 24,
+            title: "Nutrição - Noturno",
+            description: "A Nutrição é uma profissão promissora e diversificada, na qual o profissional exerce importante papel na promoção da saúde, de hábitos alimentares saudáveis, prevenção de doenças e melhoria da qualidade de vida por meio da orientação alimentar e nutricional.",
+            image: "nutrição.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.381,09",
+                blackweek: "R$ 766,78"
+            }
+        },
+        {
+            id: 25,
+            title: "Odontologia",
+            description: "Se você sempre sonhou em transformar sorrisos, seu lugar é na UniCesumar! Aqui, você viverá uma experiência completa e enriquecedora, com uma formação humanizada e prática.",
+            image: "odontologia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 3.913,27",
+                blackweek: "R$ 1.463,66"
+            }
+        },
+        {
+            id: 26,
+            title: "Pedagogia",
+            description: "O curso de graduação em Pedagogia é entender que a educação pode mudar uma vida, uma história, um país. Com o nosso curso, você se prepara para ser agente de transformação – dentro e fora da sala de aula, adquirindo conhecimentos e habilidades para despertar o desejo de aprender e inspirar futuros médicos, engenheiros, e principalmente, cidadãos.",
+            image: "pedagogia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 658,55",
+                blackweek: "R$ 365,63"
+            }
+        },
+        {
+            id: 27,
+            title: "Processos Gerenciais",
+            description: "O Curso Superior de Tecnologia em Processos Gerenciais é indispensável no mercado de trabalho, pois uma empresa bem sucedida precisa de uma administração competente por trás dela, e o profissional pode atuar em qualquer segmento do setor administrativo.",
+            image: "processos gerenciais.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 699,71",
+                blackweek: "R$ 388,47"
+            }
+        },
+        {
+            id: 28,
+            title: "Psicologia - Matutino",
+            description: "Descubra o curso de Psicologia na UniCesumar, uma jornada fascinante dedicada ao estudo aprofundado do comportamento humano e dos processos mentais. Nosso curso de graduação, que dura cinco anos, é projetado para fornecer uma compreensão completa de como as pessoas pensam, sentem, agem e interagem no mundo moderno.",
+            image: "psicologia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 2.011,83",
+                blackweek: "R$ 752,48"
+            }
+        },
+        {
+            id: 29,
+            title: "Psicologia - Noturno",
+            description: "Descubra o curso de Psicologia na UniCesumar, uma jornada fascinante dedicada ao estudo aprofundado do comportamento humano e dos processos mentais. Nosso curso de graduação, que dura cinco anos, é projetado para fornecer uma compreensão completa de como as pessoas pensam, sentem, agem e interagem no mundo moderno.",
+            image: "psicologia.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.749,41",
+                blackweek: "R$ 1.068,39"
+            }
+        },
+        {
+            id: 30,
+            title: "Publicidade e Propaganda",
+            description: "Publicidade e propaganda é uma área que envolve a criação, planejamento e execução de campanhas e estratégias para promover produtos e serviços. É a arte de conectar empresas e consumidores de forma criativa e persuasiva.",
+            image: "publicidade e propaganda.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 1.068,02",
+                blackweek: "R$ 592,96"
+            }
+        },
+        {
+            id: 31,
+            title: "Administração",
+            description: "A graduação em Administração nunca esteve tão em alta. Desde as pequenas startups hightechs, disruptivas e inovadoras, até as gigantes multinacionais que dominam o mercado há anos, todas as empresas procuram por profissionais de Administração com personalidade e visão de futuro, que saibam se organizar e planejar seu crescimento.",
+            image: "administração.jpeg", // Caminho real da imagem
+            prices: {
+                monthly: "R$ 791,79",
+                blackweek: "R$ 439,60"
             }
         }
+    ];
+    // ** FIM DA MUDANÇA: Dados do Curso Ajustados **
 
-        // Function to close modal
-        function closeCourseModal() {
-            courseModal.style.display = 'none';
-            courseForm.reset();
-        }
+    // DOM Elements
+    const coursesGrid = document.getElementById('courses-grid');
+    const courseModal = document.getElementById('course-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalCourseTitle = document.getElementById('modal-course-title');
+    const courseForm = document.getElementById('course-form');
+    const formSection = document.getElementById('form-section');
+    const pricesDisplay = document.getElementById('prices-display');
+    const monthlyPrice = document.getElementById('monthly-price');
+    //const enrollmentPrice = document.getElementById('enrollment-price');
+    const blackweekPrice = document.getElementById('blackweek-price');
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
 
-        // Function to save data to Google Sheets (simulated)
-        function saveToGoogleSheets(formData) {
-            // In a real implementation, this would send data to Google Sheets via API
-            console.log('Dados salvos na planilha:', formData);
-            
-            // Simulate API call delay
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    resolve(true);
-                }, 1000);
-            });
-        }
+    // Current selected course
+    let currentCourse = null;
 
-        // Function to show course prices
-        function showCoursePrices() {
-            if (currentCourse) {
-                monthlyPrice.textContent = currentCourse.prices.monthly;
-                //enrollmentPrice.textContent = currentCourse.prices.enrollment;
-                blackweekPrice.textContent = currentCourse.prices.blackweek;
-                
-                formSection.style.display = 'none';
-                pricesDisplay.style.display = 'block';
-            }
-        }
-
-        // Function to filter courses based on search input
-        function filterCourses() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            
-            if (searchTerm === '') {
-                renderCourses(courses);
-                return;
-            }
-            
-            const filteredCourses = courses.filter(course => 
-                course.title.toLowerCase().includes(searchTerm) || 
-                course.description.toLowerCase().includes(searchTerm)
-            );
-            
-            renderCourses(filteredCourses);
-        }
-
-        // Event Listeners
-        closeModal.addEventListener('click', closeCourseModal);
+    // Function to render courses
+    function renderCourses(coursesToRender) {
+        coursesGrid.innerHTML = '';
         
-        window.addEventListener('click', (e) => {
-            if (e.target === courseModal) {
-                closeCourseModal();
-            }
+        coursesToRender.forEach(course => {
+            const courseCard = document.createElement('div');
+            courseCard.className = 'course-card';
+            
+            // ** INÍCIO DA MUDANÇA: Geração do HTML da Imagem **
+            // Agora criamos a tag <img> com a URL do objeto 'course'
+            courseCard.innerHTML = `
+                <div class="course-image">
+                    <img src="${course.image}" alt="Imagem do curso ${course.title}">
+                    <div class="image-placeholder">${course.title}</div>
+                </div>
+                <div class="course-info">
+                    <h3 class="course-title">${course.title}</h3>
+                    <p class="course-description">${course.description}</p>
+                    <div class="course-actions">
+                        <button class="view-prices-btn" data-id="${course.id}">Ver Valores</button>
+                    </div>
+                </div>
+            `;
+            // ** FIM DA MUDANÇA: Geração do HTML da Imagem **
+
+            coursesGrid.appendChild(courseCard);
         });
 
-        courseForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Add event listeners to the "Ver Valores" buttons
+        document.querySelectorAll('.view-prices-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const courseId = parseInt(e.target.getAttribute('data-id'));
+                openCourseModal(courseId);
+            });
+        });
+    }
+
+    // Function to open course modal
+    function openCourseModal(courseId) {
+        currentCourse = courses.find(course => course.id === courseId);
+        
+        if (currentCourse) {
+            modalCourseTitle.textContent = currentCourse.title;
+            formSection.style.display = 'block';
+            pricesDisplay.style.display = 'none';
+            courseModal.style.display = 'flex';
+        }
+    }
+
+    // Function to close modal
+    function closeCourseModal() {
+        courseModal.style.display = 'none';
+        courseForm.reset();
+    }
+
+    // Function to save data to Google Sheets (simulated)
+    async function saveToGoogleSheets(formData) {
+        // Agora usa a URL real do script e os dados
+        const url = "https://script.google.com/macros/s/AKfycbwTBfpdKJb5GB0JVOggYa_iw0VSxqzDKsw5AQZJNhkLGTu1sp2wK4L475ze_1Rvoldjcw/exec";
+        
+        const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(formData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Erro de rede: ${response.status}`);
+        }
+        
+        return response.json();
+    }
+
+    // Function to show course prices
+    function showCoursePrices() {
+        if (currentCourse) {
+            monthlyPrice.textContent = currentCourse.prices.monthly;
+            //enrollmentPrice.textContent = currentCourse.prices.enrollment;
+            blackweekPrice.textContent = currentCourse.prices.blackweek;
             
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                cpf: document.getElementById('cpf').value,
-                course: currentCourse.title,
-                timestamp: new Date().toISOString()
-            };
+            formSection.style.display = 'none';
+            pricesDisplay.style.display = 'block';
+        }
+    }
+
+    // Function to filter courses based on search input
+    function filterCourses() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        if (searchTerm === '') {
+            renderCourses(courses);
+            return;
+        }
+        
+        const filteredCourses = courses.filter(course => 
+            course.title.toLowerCase().includes(searchTerm) || 
+            course.description.toLowerCase().includes(searchTerm)
+        );
+        
+        renderCourses(filteredCourses);
+    }
+
+    // Event Listeners
+    closeModal.addEventListener('click', closeCourseModal);
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === courseModal) {
+            closeCourseModal();
+        }
+    });
+
+    courseForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            nome: document.getElementById('name').value, // Ajustado para 'nome'
+            telefone: document.getElementById('phone').value, // Ajustado para 'telefone'
+            cpf: document.getElementById('cpf').value,
+            course: currentCourse.title,
+            timestamp: new Date().toISOString()
+        };
+        
+        // Show loading state
+        const submitBtn = courseForm.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Save data to Google Sheets
+            const resposta = await saveToGoogleSheets(formData);
             
-            // Show loading state
-            const submitBtn = courseForm.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Save data to Google Sheets
-                await saveToGoogleSheets(formData);
-                
+            if (resposta.success) {
                 // Show course prices
                 showCoursePrices();
-            } catch (error) {
-                console.error('Erro ao salvar dados:', error);
-                alert('Erro ao enviar dados. Tente novamente.');
-            } finally {
-                // Reset button state
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+            } else {
+                alert("❌ Ocorreu um erro: " + resposta.message);
             }
-        });
+        } catch (error) {
+            console.error('Erro ao salvar dados:', error);
+            alert('❌ Erro ao enviar dados. Tente novamente.');
+        } finally {
+            // Reset button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
 
-        searchBtn.addEventListener('click', filterCourses);
-        
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                filterCourses();
+    searchBtn.addEventListener('click', filterCourses);
+    
+    searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            filterCourses();
+        }
+    });
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCourses(courses);
+    });
+
+    // --- CÓDIGO FORNECIDO ADICIONADO ABAIXO ---
+
+    /**
+     * Listener para o botão 'btn-inscreva'.
+     * Mostra a seção do formulário e rola a tela até ela.
+     */
+    document.getElementById("btn-inscreva").addEventListener("click", function() {
+        document.getElementById("form-section").style.display = "block";
+        document.getElementById("form-section").scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /**
+     * Função de redirecionamento.
+     * Redireciona para a página de graduação da Unicesumar.
+     */
+    function acessar() {
+        window.location.href='https://venhaparaunicesumar.com.br/graduacao'
+    }
+
+    /**
+     * Listener para o formulário 'form-enem'.
+     * Coleta os dados, envia para o Google Script e trata a resposta.
+     */
+    document.getElementById("form-enem").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const dados = {
+            nome: document.getElementById("nome").value,
+            cpf: document.getElementById("cpf").value,
+            email: document.getElementById("email").value,
+            telefone: document.getElementById("telefone").value
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbwTBfpdKJb5GB0JVOggYa_iw0VSxqzDKsw5AQZJNhkLGTu1sp2wK4L475ze_1Rvoldjcw/exec", {
+            method: "POST",
+            body: JSON.stringify(dados)
+        })
+        .then(res => res.json())
+        .then (resposta => {
+            if (resposta.success) {
+                alert("✅ Dados enviados com sucesso!");
+                document.getElementById("form-enem").reset();
+                window.location.href = "https://cursoenemgratuito.com.br/unicesumar/";
             }
+            else {
+                alert("❌ Ocorreu um erro: " + resposta.message);
+            }
+        })
+        .catch(err => {
+            alert("❌ Erro ao enviar os dados.");
+            console.error(err);
         });
+    });
 
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCourses(courses);
-        });
-    </script>
+</script>
 </body>
 </html>
