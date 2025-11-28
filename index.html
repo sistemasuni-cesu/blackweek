@@ -917,22 +917,40 @@
         }
     }
 
-    // Function to filter courses based on search input
-    function filterCourses() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        
-        if (searchTerm === '') {
-            renderCourses(courses);
-            return;
-        }
-        
-        const filteredCourses = courses.filter(course => 
-            course.title.toLowerCase().includes(searchTerm) || 
-            course.description.toLowerCase().includes(searchTerm)
-        );
-        
-        renderCourses(filteredCourses);
+// 1. FUNÇÃO AUXILIAR PARA REMOVER ACENTOS
+function normalizeString(text) {
+    if (!text) return '';
+    // Converte a string para sua forma NFD e remove os diacríticos (acentos, til, etc.)
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+// 2. SUA FUNÇÃO filterCourses MODIFICADA
+function filterCourses() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    // Normaliza o termo de busca para ignorar acentos
+    const normalizedSearchTerm = normalizeString(searchTerm); 
+
+    if (normalizedSearchTerm === '') {
+        renderCourses(courses);
+        return;
     }
+    
+    const filteredCourses = courses.filter(course => {
+        
+        // Normaliza o título do curso para comparação
+        const normalizedTitle = normalizeString(course.title.toLowerCase());
+        
+        // Normaliza a descrição do curso para comparação
+        const normalizedDescription = normalizeString(course.description.toLowerCase());
+        
+        // Faz a comparação usando os termos normalizados
+        return normalizedTitle.includes(normalizedSearchTerm) || 
+               normalizedDescription.includes(normalizedSearchTerm);
+    });
+    
+    renderCourses(filteredCourses);
+}
 
     // Event Listeners
     closeModal.addEventListener('click', closeCourseModal);
