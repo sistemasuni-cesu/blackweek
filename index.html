@@ -172,12 +172,23 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .course-image {
-            position: relative;
-            height: 400px; /* Altura padrão para os cards */
-            background-color: var(--light-blue);
-            overflow: hidden;
-        }
+.course-image {
+    width: 100%; /* Garante que o contêiner ocupa a largura total disponível */
+    height: 250px; /* Defina uma altura fixa para o contêiner */
+    overflow: hidden; /* Garante que qualquer parte da imagem que exceda o contêiner seja cortada */
+    border-radius: 10px 10px 0 0; /* Ajuste o raio da borda se necessário */
+}
+
+.course-image img {
+    width: 100%; /* Faz a imagem ocupar 100% da largura do contêiner */
+    height: 100%; /* Faz a imagem ocupar 100% da altura do contêiner */
+    
+    /* 🚀 Propriedades para Melhor Enquadramento */
+    object-fit: cover; /* Recorta a imagem para preencher o contêiner, mantendo a proporção. É a opção mais comum para backgrounds/banners. */
+    /* object-fit: contain; /* Redimensiona a imagem para caber no contêiner, mostrando a imagem inteira e mantendo a proporção. Pode deixar barras laterais/superior-inferior. */
+    
+    object-position: center; /* Centraliza a imagem dentro do contêiner. Você pode usar 'top', 'bottom', 'left', 'right', '50% 50%' (padrão 'center'), etc. */
+}
 
         /* Estilo da Imagem do Card (Corrigido) */
         .course-image img {
