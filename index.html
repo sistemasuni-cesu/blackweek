@@ -363,7 +363,7 @@
             margin-top: 50px;
         }
 
-        /* Responsive */
+/* Responsive */
         @media (max-width: 768px) {
             .header-banner {
                 height: 250px;
@@ -377,34 +377,34 @@
         }
 
         @media (max-width: 480px) {
+            /* Banner Principal */
             .header-banner {
-                height: 200px;
+                height: 180px; /* Altura final para celular */
             }
+            /* Títulos */
             h1 {
                 font-size: 1.4rem;
             }
             .logo {
                 font-size: 1.2rem;
             }
+            /* Grid */
             .courses-grid {
                 grid-template-columns: 1fr;
             }
+            /* Busca */
             .search-box button {
                 padding: 10px 15px;
             }
             .search-box input {
-                 padding-right: 120px; /* Evita que o texto passe por baixo do botão */
+                 padding-right: 120px;
             }
-        }
-        @media (max-width: 480px) {
-            /* ... outras regras ... */
-            
-            /* 🚀 ADIÇÃO PARA AJUSTAR A PROPORÇÃO NO CELULAR */
+            /* Imagem dos Cards de Curso */
             .course-image {
-                padding-top: 75%; /* Proporção 4:3 (3/4 = 0.75) */
+                height: 150px; /* Altura menor para as imagens dos cards */
             }
-            /* ---------------------------------------------------- */
         }
+    </style>
     </style>
 </head>
 <body>
@@ -1068,3 +1068,4 @@ function filterCourses() {
 </script>
 </body>
 </html>
+
